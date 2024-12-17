@@ -3,131 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Challenge #1</title>
+    <title>Movie Dropdown</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @font-face {
-        font-family: "Avenue";
-        src: url("./5thAvenue-Italic.ttf") format("truetype");
+      body {
+        background-image: url("./background.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
       }
-
-      /* Hide the built-in password toggle in Chrome/Edge */
-      input::-ms-reveal,
-      input::-ms-clear,
-      input::-webkit-credentials-auto-fill-button {
-        display: none !important;
-      }
-
-      /* For newer Webkit browsers */
-      input[type="password"]::-webkit-contacts-auto-fill-button,
-      input[type="password"]::-webkit-credentials-auto-fill-button {
-        visibility: hidden;
-        display: none !important;
-        pointer-events: none;
-        position: absolute;
-        right: 0;
-      }
-
-      .password-container {
-        transition: background-color 0.3s ease;
-      }
-
-      .password-visible {
-        background-color: #1f9c97; /* Darker teal for visible state */
-      }
-
-      .password-hidden {
-        background-color: #26c9c3; /* Original teal color */
-      }
-
-      .custom-input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 34px;
+      .dropdown-item:hover,
+      .dropdown-item.selected {
+        background-color: rgb(59, 130, 246);
+        color: white;
       }
     </style>
-    <!--Tailwind Config-->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              avenue: ["Avenue", "sans-serif"],
-            },
-            colors: {
-              "custom-green": "#698662",
-              "custom-ltGreen": "#cae3db",
-              "custom-teal": "#26C9C3",
-              "custom-blue": "#191349",
-            },
-          },
-        },
-      };
-    </script>
   </head>
-  <body class="bg-gray-600">
-    <div class="min-h-screen flex items-center justify-center p-4">
-      <div class="w-full max-w-5xl">
-        <div class="flex flex-col lg:flex-row">
-          <div
-            class="w-full lg:w-[55%] h-[300px] sm:h-[400px] lg:h-[700px] bg-custom-ltGreen overflow-hidden"
+  <body class="min-h-screen bg-gray-100 p-8">
+    <div class="max-w-2xl mx-auto">
+      <!-- Search Section -->
+      <div class="relative mb-8">
+        <div class="relative">
+          <input
+            type="text"
+            id="movieSearch"
+            placeholder="Search for a movie..."
+            class="w-full p-4 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none pr-12"
+            aria-label="Search for a movie"
+            aria-expanded="false"
+            aria-controls="movieDropdown"
+            role="combobox"
+          />
+          <button
+            id="clearSearch"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 hidden"
+            aria-label="Clear search"
           >
-            <img
-              src="images/title.png"
-              alt="title"
-              class="w-full h-full object-contain"
-            />
-          </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M15 9l-6 6" />
+              <path d="M9 9l6 6" />
+            </svg>
+          </button>
+        </div>
 
-          <div
-            class="w-full lg:w-[45%] h-[300px] sm:h-[400px] lg:h-[700px] bg-custom-green relative"
-          >
-            <img
-              src="./images/star.png"
-              alt="star"
-              class="absolute top-2 right-2 sm:top-4 sm:right-4 lg:top-9 lg:right-10 w-12 h-12 sm:w-16 sm:h-16 lg:w-24 lg:h-24"
-            />
+        <div
+          id="movieDropdown"
+          class="absolute w-full mt-2 bg-white rounded-lg shadow-lg border hidden max-h-96 overflow-y-auto z-50"
+          role="listbox"
+        ></div>
+      </div>
 
-            <div class="h-full flex flex-col justify-center items-center px-4">
-              <h1
-                class="text-white text-4xl sm:text-6xl lg:text-9xl font-avenue mb-4 sm:mb-8 lg:mb-24"
-              >
-                Day 1
-              </h1>
-
-              <p
-                class="text-white text-2xl sm:text-4xl lg:text-7xl font-avenue mb-4 sm:mb-8 text-center"
-              >
-                Show/Hide Password
-              </p>
-
+      <!-- Selected Movie Display -->
+      <div
+        id="selectedMovie"
+        class="hidden bg-white rounded-lg shadow-lg overflow-hidden"
+      >
+        <div class="p-6">
+          <div class="flex flex-col md:flex-row gap-6">
+            <div class="w-full md:w-1/2">
               <div
-                id="passwordContainer"
-                class="password-container password-hidden flex items-center justify-center w-full max-w-md rounded-lg h-14 sm:h-16 lg:h-20 px-3 sm:px-4"
+                class="bg-gray-200 rounded-lg flex items-center justify-center"
               >
                 <img
-                  src="./images/lock.png"
-                  class="w-8 h-8 sm:w-10 sm:h-10 lg:w-14 lg:h-14 mr-2"
-                  alt="lock"
+                  id="movieImage"
+                  src=""
+                  alt="poster"
+                  class="object-cover rounded-lg"
+                  width="300"
+                  height="450"
                 />
-                <input
-                  type="password"
-                  id="passwordInput"
-                  class="custom-input w-2/3 h-10 sm:h-12 lg:h-14 px-2 sm:px-4 text-xl sm:text-2xl lg:text-4xl bg-transparent border-l-2 border-white mr-2 text-white"
-                  placeholder="Enter Password"
-                />
-                <button
-                  type="button"
-                  id="toggleButton"
-                  class="bg-transparent border-none p-0 m-0"
-                  onclick="togglePassword()"
-                >
-                  <img
-                    id="toggleEye"
-                    src="./images/eye.png"
-                    alt="toggle password"
-                    class="w-8 h-8 sm:w-10 sm:h-10 lg:w-14 lg:h-14 hover:cursor-pointer bg-custom-blue rounded-full p-2 transition-transform duration-200 hover:scale-105"
-                  />
-                </button>
+              </div>
+            </div>
+            <div class="w-full md:w-2/3">
+              <h2
+                id="movieTitle"
+                class="text-3xl font-bold mb-2 text-center"
+              ></h2>
+              <div
+                class="flex flex-wrap justify-between items-center gap-4 text-gray-600 mb-4"
+              >
+                <span
+                  id="movieYear"
+                  class="bg-gray-100 px-2 py-1 rounded"
+                ></span>
+                <span
+                  id="movieDuration"
+                  class="bg-gray-100 px-2 py-1 rounded"
+                ></span>
+                <span
+                  id="movieRating"
+                  class="text-yellow-500 font-semibold"
+                ></span>
+              </div>
+              <div class="mb-4">
+                <h3 class="font-semibold text-gray-700 mb-1">Director</h3>
+                <p id="movieDirector" class="text-gray-600"></p>
+              </div>
+              <div class="mb-4">
+                <h3 class="font-semibold text-gray-700 mb-1">Stars</h3>
+                <p id="movieStars" class="text-gray-600"></p>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-700 mb-1">Description</h3>
+                <p
+                  id="movieDescription"
+                  class="text-gray-600 leading-relaxed"
+                ></p>
               </div>
             </div>
           </div>
@@ -135,24 +128,6 @@
       </div>
     </div>
 
-    <script>
-      function togglePassword() {
-        const input = document.getElementById("passwordInput");
-        const eye = document.getElementById("toggleEye");
-        const container = document.getElementById("passwordContainer");
-
-        if (input.type === "password") {
-          input.type = "text";
-          eye.src = "./images/close-eye.png";
-          container.classList.remove("password-hidden");
-          container.classList.add("password-visible");
-        } else {
-          input.type = "password";
-          eye.src = "./images/eye.png";
-          container.classList.remove("password-visible");
-          container.classList.add("password-hidden");
-        }
-      }
-    </script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>
