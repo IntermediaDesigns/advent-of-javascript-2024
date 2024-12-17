@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge #1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @font-face {
+        font-family: "Avenue";
+        src: url("./5thAvenue-Italic.ttf") format("truetype");
+      }
+
+      /* Hide the built-in password toggle in Chrome/Edge */
+      input::-ms-reveal,
+      input::-ms-clear,
+      input::-webkit-credentials-auto-fill-button {
+        display: none !important;
+      }
+
+      /* For newer Webkit browsers */
+      input[type="password"]::-webkit-contacts-auto-fill-button,
+      input[type="password"]::-webkit-credentials-auto-fill-button {
+        visibility: hidden;
+        display: none !important;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+      }
+
+      .password-container {
+        transition: background-color 0.3s ease;
+      }
+
+      .password-visible {
+        background-color: #1f9c97; /* Darker teal for visible state */
+      }
+
+      .password-hidden {
+        background-color: #26c9c3; /* Original teal color */
+      }
+
+      .custom-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 34px;
+      }
+    </style>
+    <!--Tailwind Config-->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              avenue: ["Avenue", "sans-serif"],
+            },
+            colors: {
+              "custom-green": "#698662",
+              "custom-ltGreen": "#cae3db",
+              "custom-teal": "#26C9C3",
+              "custom-blue": "#191349",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-600">
+    <div class="min-h-screen flex items-center justify-center p-4">
+      <div class="w-full max-w-5xl">
+        <div class="flex flex-col lg:flex-row">
+          <div
+            class="w-full lg:w-[55%] h-[300px] sm:h-[400px] lg:h-[700px] bg-custom-ltGreen overflow-hidden"
+          >
+            <img
+              src="images/title.png"
+              alt="title"
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <div
+            class="w-full lg:w-[45%] h-[300px] sm:h-[400px] lg:h-[700px] bg-custom-green relative"
+          >
+            <img
+              src="./images/star.png"
+              alt="star"
+              class="absolute top-2 right-2 sm:top-4 sm:right-4 lg:top-9 lg:right-10 w-12 h-12 sm:w-16 sm:h-16 lg:w-24 lg:h-24"
+            />
+
+            <div class="h-full flex flex-col justify-center items-center px-4">
+              <h1
+                class="text-white text-4xl sm:text-6xl lg:text-9xl font-avenue mb-4 sm:mb-8 lg:mb-24"
+              >
+                Day 1
+              </h1>
+
+              <p
+                class="text-white text-2xl sm:text-4xl lg:text-7xl font-avenue mb-4 sm:mb-8 text-center"
+              >
+                Show/Hide Password
+              </p>
+
+              <div
+                id="passwordContainer"
+                class="password-container password-hidden flex items-center justify-center w-full max-w-md rounded-lg h-14 sm:h-16 lg:h-20 px-3 sm:px-4"
+              >
+                <img
+                  src="./images/lock.png"
+                  class="w-8 h-8 sm:w-10 sm:h-10 lg:w-14 lg:h-14 mr-2"
+                  alt="lock"
+                />
+                <input
+                  type="password"
+                  id="passwordInput"
+                  class="custom-input w-2/3 h-10 sm:h-12 lg:h-14 px-2 sm:px-4 text-xl sm:text-2xl lg:text-4xl bg-transparent border-l-2 border-white mr-2 text-white"
+                  placeholder="Enter Password"
+                />
+                <button
+                  type="button"
+                  id="toggleButton"
+                  class="bg-transparent border-none p-0 m-0"
+                  onclick="togglePassword()"
+                >
+                  <img
+                    id="toggleEye"
+                    src="./images/eye.png"
+                    alt="toggle password"
+                    class="w-8 h-8 sm:w-10 sm:h-10 lg:w-14 lg:h-14 hover:cursor-pointer bg-custom-blue rounded-full p-2 transition-transform duration-200 hover:scale-105"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function togglePassword() {
+        const input = document.getElementById("passwordInput");
+        const eye = document.getElementById("toggleEye");
+        const container = document.getElementById("passwordContainer");
+
+        if (input.type === "password") {
+          input.type = "text";
+          eye.src = "./images/close-eye.png";
+          container.classList.remove("password-hidden");
+          container.classList.add("password-visible");
+        } else {
+          input.type = "password";
+          eye.src = "./images/eye.png";
+          container.classList.remove("password-visible");
+          container.classList.add("password-hidden");
+        }
+      }
+    </script>
+  </body>
+</html>
