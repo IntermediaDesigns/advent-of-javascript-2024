@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge #4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .panel {
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      .resize-handle-horizontal {
+        cursor: col-resize;
+        width: 4px;
+        background-color: #4a5568;
+      }
+
+      .resize-handle-vertical {
+        cursor: row-resize;
+        height: 4px;
+        background-color: #4a5568;
+      }
+
+      .no-select {
+        -webkit-user-select: none;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="h-screen flex flex-col">
+      <!-- Top Panel -->
+      <div
+        id="top-panel"
+        class="panel"
+        style="background-color: #cae3db; height: 33%"
+      >
+        <div class="p-4">Top Panel</div>
+      </div>
+
+      <!-- Horizontal Resize Handle -->
+      <div id="horizontal-handle" class="resize-handle-vertical w-full"></div>
+
+      <!-- Bottom Container -->
+      <div class="flex flex-1">
+        <!-- Bottom Left Panel -->
+        <div
+          id="bottom-left-panel"
+          class="panel"
+          style="background-color: #698662; width: 50%"
+        >
+          <div class="p-4">Bottom Left Panel</div>
+        </div>
+
+        <!-- Vertical Resize Handle -->
+        <div id="vertical-handle" class="resize-handle-horizontal"></div>
+
+        <!-- Bottom Right Panel -->
+        <div
+          id="bottom-right-panel"
+          class="panel"
+          style="background-color: #536a4e; flex: 1"
+        >
+          <div class="p-4">Bottom Right Panel</div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
