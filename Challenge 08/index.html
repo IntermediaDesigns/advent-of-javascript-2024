@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style></style>
+  </head>
+  <body class="bg-slate-300 min-h-screen flex items-center justify-center p-4">
+    <div class="w-full max-w-2xl">
+      <div class="bg-slate-800 rounded-lg shadow-md p-6">
+        <h1 class="text-2xl font-bold text-white mb-4">Tag Input</h1>
+        <div class="relative">
+          <div
+            id="tagContainer"
+            class="flex flex-wrap gap-2 p-2 min-h-12 bg-slate-900 border border-gray-500 rounded-lg focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500"
+          >
+            <div id="tagList" class="flex flex-wrap gap-2"></div>
+            <input
+              type="text"
+              id="tagInput"
+              class="outline-none flex-grow min-w-[120px] p-1 bg-slate-900 text-white"
+              placeholder="Type and press comma to add tags..."
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
