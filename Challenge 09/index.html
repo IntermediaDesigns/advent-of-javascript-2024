@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-image: url("https://img.freepik.com/free-photo/snowflakes-blurred-lights_1048-4260.jpg?t=st=1734798705~exp=1734802305~hmac=05ed9dae7e8aefc65a83d1dd8be1e5a7274e81267dae5378c0157ebceaff9de8&w=1800");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-gray-100 p-8">
+    <div
+      class="max-w-2xl mx-auto bg-lime-100/10 backdrop-blur-md rounded-lg shadow-xl p-8"
+    >
+      <h1 class="text-3xl font-bold mb-6 text-gray-800">Holiday Survey</h1>
+
+      <form
+        id="holidayForm"
+        class="space-y-6"
+        onsubmit="localStorage.clear(); return true;"
+      >
+        <!-- Name Input -->
+        <div>
+          <label
+            for="name"
+            class="block text-lgg font-medium text-gray-700 mb-1"
+            >Name</label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            oninput="localStorage.setItem('form_name', this.value)"
+            value=""
+          />
+        </div>
+
+        <!-- Email Input -->
+        <div>
+          <label
+            for="email"
+            class="block text-lg font-medium text-gray-700 mb-1"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            oninput="localStorage.setItem('form_email', this.value)"
+            value=""
+          />
+        </div>
+
+        <!-- Favorite Reindeer -->
+        <div>
+          <p class="block text-lg font-medium text-gray-700 mb-2">
+            Favorite Reindeer
+          </p>
+          <div class="space-y-2">
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="dasher"
+                name="reindeer"
+                value="dasher"
+                required
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                onclick="localStorage.setItem('form_reindeer', this.value)"
+              />
+              <label for="dasher" class="ml-2 text-sm text-gray-700"
+                >Dasher</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="dancer"
+                name="reindeer"
+                value="dancer"
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                onclick="localStorage.setItem('form_reindeer', this.value)"
+              />
+              <label for="dancer" class="ml-2 text-sm text-gray-700"
+                >Dancer</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="radio"
+                id="rudolph"
+                name="reindeer"
+                value="rudolph"
+                class="h-4 w-4 text-blue-600 focus:ring-blue-500"
+                onclick="localStorage.setItem('form_reindeer', this.value)"
+              />
+              <label for="rudolph" class="ml-2 text-sm text-gray-700"
+                >Rudolph</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Movies Watched -->
+        <div>
+          <p class="block text-lg font-medium text-gray-700 mb-2">
+            Holiday Movies Watched
+          </p>
+          <div class="space-y-2">
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="elf"
+                name="movies"
+                value="elf"
+                class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                onclick="localStorage.setItem('form_movie_elf', this.checked)"
+              />
+              <label for="elf" class="ml-2 text-sm text-gray-700"
+                >Elf (2003)</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="homealone"
+                name="movies"
+                value="homealone"
+                class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                onclick="localStorage.setItem('form_movie_homealone', this.checked)"
+              />
+              <label for="homealone" class="ml-2 text-sm text-gray-700"
+                >Home Alone (1990)</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="grinch"
+                name="movies"
+                value="grinch"
+                class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                onclick="localStorage.setItem('form_movie_grinch', this.checked)"
+              />
+              <label for="grinch" class="ml-2 text-sm text-gray-700"
+                >The Grinch (1966)</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="wonderful"
+                name="movies"
+                value="wonderful"
+                class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                onclick="localStorage.setItem('form_movie_wonderful', this.checked)"
+              />
+              <label for="wonderful" class="ml-2 text-sm text-gray-700"
+                >It's a Wonderful Life (1946)</label
+              >
+            </div>
+            <div class="flex items-center">
+              <input
+                type="checkbox"
+                id="diehard"
+                name="movies"
+                value="diehard"
+                class="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                onclick="localStorage.setItem('form_movie_diehard', this.checked)"
+              />
+              <label for="diehard" class="ml-2 text-sm text-gray-700"
+                >Die Hard (1988)</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
